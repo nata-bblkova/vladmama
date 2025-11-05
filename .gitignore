@@ -1,0 +1,9 @@
+/db/
+/remote_db/
+
+###> symfony/framework-bundle ###
+/.env.local
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###

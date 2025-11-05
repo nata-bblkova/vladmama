@@ -1,0 +1,34 @@
+services:
+    db:
+        build:
+            context: ./docker/mysql
+        volumes:
+            - ./db:/var/lib/mysql
+        ports:
+            - "15306:3306"
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+            - MYSQL_USER=db_user
+            - MYSQL_PASSWORD=db_password
+            - MYSQL_DATABASE=db_name
+
+    php:
+        build:
+            context: ./docker/php
+        volumes:
+            - .:/app
+        working_dir: /app
+        depends_on:
+            - db
+        extra_hosts:
+            - host.docker.internal:host-gateway
+
+    httpd:
+        build:
+            context: ./docker/apache
+        ports:
+            - "8081:80"
+        volumes:
+            - .:/app
+        depends_on:
+            - php
