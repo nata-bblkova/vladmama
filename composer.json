@@ -7,6 +7,7 @@
         "php": ">=8.2",
         "ext-ctype": "*",
         "ext-iconv": "*",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
         "sonata-project/admin-bundle": "^4.38",
         "sonata-project/doctrine-orm-admin-bundle": "^4.19",
         "sonata-project/media-bundle": "*",
