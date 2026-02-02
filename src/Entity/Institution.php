@@ -11,21 +11,23 @@
 
 namespace App\Entity;
 
-use App\Entity\Security\User;
-use App\Enum\DeliveryTypeEnum;
-use App\Enum\OrderStatusEnum;
-use App\Enum\PaymentTypeEnum;
+use App\Model\ResourceInterface;
+use App\Model\ResourceTrait;
 use App\Model\TimestampableInterface;
 use App\Model\TimestampableTrait;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class Institution
+class Institution implements ResourceInterface, TimestampableInterface
 {
-    private int $id;
+    use ResourceTrait;
+    use TimestampableTrait;
+
     private string $name;
     private string $description;
+//    private string $image;
+
     /** @var Collection<Group> */
     private Collection $groups;
 
@@ -37,18 +39,6 @@ class Institution
     public function __toString(): string
     {
         return $this->name;
-    }
-
-    public function setId(int $id): static
-    {
-        $this->id = $id;
-
-        return $this;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     public function setName(string $name): static

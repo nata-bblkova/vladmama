@@ -1,4 +1,4 @@
-FROM php:8.4-fpm-bookworm
+FROM php:8.4-fpm
 
 RUN apt-get update && apt-get install --yes --no-install-recommends \
     sudo \
