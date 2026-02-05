@@ -34,30 +34,14 @@ trait TimestampableTrait
         return $this->updatedAt;
     }
 
-    public function prePersist(): void
+    public function prePersistTimestampable(): void
     {
         $this->createdAt = new DateTime();
         $this->updatedAt = new DateTime();
     }
 
-    public function preUpdate(): void
+    public function preUpdateTimestampable(): void
     {
         $this->updatedAt = new DateTime();
-    }
-
-    /**
-     * @return int
-     */
-    public function getCreatedAtTimestamp(): int
-    {
-        return $this->createdAt->getTimestamp();
-    }
-
-    /**
-     * @return int
-     */
-    public function getUpdatedAtTimestamp(): int
-    {
-        return $this->updatedAt->getTimestamp();
     }
 }

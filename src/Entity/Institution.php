@@ -11,6 +11,8 @@
 
 namespace App\Entity;
 
+use App\Model\CoordinatesInterface;
+use App\Model\CoordinatesTrait;
 use App\Model\ResourceInterface;
 use App\Model\ResourceTrait;
 use App\Model\TimestampableInterface;
@@ -19,13 +21,15 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
-class Institution implements ResourceInterface, TimestampableInterface
+class Institution implements ResourceInterface, TimestampableInterface, CoordinatesInterface
 {
     use ResourceTrait;
     use TimestampableTrait;
+    use CoordinatesTrait;
 
     private string $name;
     private string $description;
+    private string $address;
 //    private string $image;
 
     /** @var Collection<Group> */
@@ -63,6 +67,18 @@ class Institution implements ResourceInterface, TimestampableInterface
     public function getDescription(): string
     {
         return $this->description;
+    }
+
+    public function setAddress(string $address): static
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    public function getAddress(): string
+    {
+        return $this->address;
     }
 
     /**
