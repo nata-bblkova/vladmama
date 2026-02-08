@@ -8,12 +8,12 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "doctrine/doctrine-migrations-bundle": "^3.7",
-        "sonata-project/admin-bundle": "^4.38",
+        "sonata-project/admin-bundle": "^4.40",
         "sonata-project/doctrine-orm-admin-bundle": "^4.19",
-        "sonata-project/media-bundle": "*",
+        "sonata-project/media-bundle": ">=4.19",
         "symfony/console": "7.2.*",
         "symfony/dotenv": "7.2.*",
-        "symfony/flex": "^2",
+        "symfony/flex": "^2.10",
         "symfony/framework-bundle": "7.2.*",
         "symfony/runtime": "7.2.*",
         "symfony/yaml": "7.2.*"
@@ -65,7 +65,7 @@
     "extra": {
         "symfony": {
             "allow-contrib": false,
-            "require": "7.2.*"
+            "require": "7.4.*"
         }
     }
 }

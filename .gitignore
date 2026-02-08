@@ -1,5 +1,6 @@
 /db/
 /remote_db/
+.idea
 
 ###> symfony/framework-bundle ###
 /.env.local

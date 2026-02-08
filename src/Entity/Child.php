@@ -2,17 +2,11 @@
 
 namespace App\Entity;
 
-use App\Entity\Security\User;
-use App\Enum\DeliveryTypeEnum;
-use App\Enum\OrderStatusEnum;
-use App\Enum\PaymentTypeEnum;
 use App\Model\ResourceInterface;
 use App\Model\ResourceTrait;
 use App\Model\TimestampableInterface;
 use App\Model\TimestampableTrait;
 use DateTime;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 
 class Child implements ResourceInterface, TimestampableInterface
 {
@@ -22,7 +16,7 @@ class Child implements ResourceInterface, TimestampableInterface
     private string $name;
     private string $description;
     private ?string $desire = null;
-    private ?Institution $institution = null;
+    private Institution $institution;
     private ?Group $group = null;
     private DateTime $birthday;
 
@@ -79,14 +73,14 @@ class Child implements ResourceInterface, TimestampableInterface
         return $this->desire;
     }
 
-    public function setInstitution(?Institution $institution): static
+    public function setInstitution(Institution $institution): static
     {
         $this->institution = $institution;
 
         return $this;
     }
 
-    public function getInstitution(): ?Institution
+    public function getInstitution(): Institution
     {
         return $this->institution;
     }

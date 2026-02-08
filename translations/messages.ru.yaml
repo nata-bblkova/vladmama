@@ -1,0 +1,37 @@
+admin:
+  news: "Новости"
+
+breadcrumb:
+  link_news_list: "Новости"
+  link_news_create: "Создать новость"
+
+form:
+  group_general: "Основное"
+  group_information: "Информация"
+
+  label_id: "ID"
+  label_name: "Название"
+  label_description: "Описание"
+  label_category: "Категория"
+  label_date_publication: "Дата публикации"
+
+show:
+  group_admin_news: "Новость"
+
+  label_id: "ID"
+  label_name: "Название"
+  label_description: "Описание"
+  label_category: "Категория"
+
+list:
+  label__actions: "Действия"
+  label_id: "ID"
+  label_name: "Название"
+  label_description: "Описание"
+  label_category: "Категория"
+
+filter:
+  label_id: "ID"
+  label_name: "Название"
+  label_description: "Описание"
+  label_category: "Категория"

@@ -9,17 +9,14 @@ use App\Model\ResourceTrait;
 use App\Model\TimestampableInterface;
 use App\Model\TimestampableTrait;
 
-class Group implements ResourceInterface, TimestampableInterface, CoordinatesInterface
+class Category implements ResourceInterface, TimestampableInterface
 {
     use ResourceTrait;
     use TimestampableTrait;
-    use CoordinatesTrait;
 
     private string $name;
     private string $description;
-    private string $address;
     //    private string $image;
-    private Institution $institution;
 
     public function __toString(): string
     {
@@ -48,29 +45,5 @@ class Group implements ResourceInterface, TimestampableInterface, CoordinatesInt
     public function getDescription(): string
     {
         return $this->description;
-    }
-
-    public function setAddress(string $address): static
-    {
-        $this->address = $address;
-
-        return $this;
-    }
-
-    public function getAddress(): string
-    {
-        return $this->address;
-    }
-
-    public function setInstitution(Institution $institution): static
-    {
-        $this->institution = $institution;
-
-        return $this;
-    }
-
-    public function getInstitution(): Institution
-    {
-        return $this->institution;
     }
 }

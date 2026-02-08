@@ -8,18 +8,18 @@ use App\Model\ResourceInterface;
 use App\Model\ResourceTrait;
 use App\Model\TimestampableInterface;
 use App\Model\TimestampableTrait;
+use DateTime;
 
-class Group implements ResourceInterface, TimestampableInterface, CoordinatesInterface
+class News implements ResourceInterface, TimestampableInterface
 {
     use ResourceTrait;
     use TimestampableTrait;
-    use CoordinatesTrait;
 
     private string $name;
     private string $description;
-    private string $address;
+    private DateTime $datePublication;
+    private Category $category;
     //    private string $image;
-    private Institution $institution;
 
     public function __toString(): string
     {
@@ -50,27 +50,27 @@ class Group implements ResourceInterface, TimestampableInterface, CoordinatesInt
         return $this->description;
     }
 
-    public function setAddress(string $address): static
+    public function setDatePublication(DateTime $datePublication): static
     {
-        $this->address = $address;
+        $this->datePublication = $datePublication;
 
         return $this;
     }
 
-    public function getAddress(): string
+    public function getDatePublication(): DateTime
     {
-        return $this->address;
+        return $this->datePublication;
     }
 
-    public function setInstitution(Institution $institution): static
+    public function setCategory(Category $category): static
     {
-        $this->institution = $institution;
+        $this->category = $category;
 
         return $this;
     }
 
-    public function getInstitution(): Institution
+    public function getCategory(): Category
     {
-        return $this->institution;
+        return $this->category;
     }
 }

@@ -4,7 +4,7 @@ namespace App\Model;
 
 use DateTime;
 
-interface AddressInterface
+interface CoordinatesInterface
 {
     public function setCreatedAt(DateTime $createdAt): static;
 
