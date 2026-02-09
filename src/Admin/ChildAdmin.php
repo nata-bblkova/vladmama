@@ -3,6 +3,8 @@
 namespace App\Admin;
 
 use App\Entity\Category;
+use App\Entity\Group;
+use App\Entity\Institution;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -15,13 +17,13 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-final class NewsAdmin extends AbstractAdmin
+final class ChildAdmin extends AbstractAdmin
 {
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues = [
             DatagridInterface::SORT_ORDER => 'DESC',
-            DatagridInterface::SORT_BY    => 'createdAt',
+            DatagridInterface::SORT_BY    => 'name',
         ];
     }
 
@@ -30,14 +32,17 @@ final class NewsAdmin extends AbstractAdmin
         $form
             ->with('general', ['class' => 'col-md-6'])
                 ->add('name', TextType::class)
-                ->add('description', TextareaType::class, [
+                ->add('desire', TextareaType::class, [
                     'attr' => ['rows' => 7],
                 ])
             ->end()
             ->with('information', ['class' => 'col-md-3'])
-                ->add('datePublication', DateTimeType::class)
-                ->add('category', EntityType::class, [
-                    'class' => Category::class,
+                ->add('birthday', DateTimeType::class)
+                ->add('institution', EntityType::class, [
+                    'class' => Institution::class,
+                ])
+                ->add('group', EntityType::class, [
+                    'class' => Group::class,
                 ])
             ->end()
         ;
@@ -48,8 +53,9 @@ final class NewsAdmin extends AbstractAdmin
         $datagrid
             ->add('id')
             ->add('name')
-//            ->add('datePublication')
-            ->add('category')
+            ->add('desire')
+            ->add('institution')
+            ->add('group')
         ;
     }
 
@@ -58,15 +64,9 @@ final class NewsAdmin extends AbstractAdmin
         $list
             ->addIdentifier('id')
             ->add('name')
-            ->add('description', FieldDescriptionInterface::TYPE_HTML, [
-                'truncate' => [
-                    'length' => 300
-                ]
-            ])
-            ->add('datePublication', 'datetime', [
-                'format' => 'd.m.Y',
-            ])
-            ->add('category')
+            ->add('desire')
+            ->add('institution')
+            ->add('group')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show'   => [],
@@ -82,9 +82,10 @@ final class NewsAdmin extends AbstractAdmin
         $show
             ->add('id')
             ->add('name')
-            ->add('description')
-//            ->add('datePublication')
-            ->add('category')
+            ->add('desire')
+            ->add('birthday')
+            ->add('institution')
+            ->add('group')
         ;
     }
 }

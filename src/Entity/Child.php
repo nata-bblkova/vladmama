@@ -96,4 +96,16 @@ class Child implements ResourceInterface, TimestampableInterface
     {
         return $this->group;
     }
+
+    public function setBirthday(DateTime $birthday): static
+    {
+        $this->birthday = $birthday;
+
+        return $this;
+    }
+
+    public function getBirthday(): DateTime
+    {
+        return $this->birthday;
+    }
 }

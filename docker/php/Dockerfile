@@ -41,8 +41,9 @@ RUN docker-php-ext-configure intl \
 #RUN git config --global alias.st status
 
 # setup new user for running app
-#RUN useradd -m -s /bin/bash -G sudo deployer && echo "deployer:deployer" | chpasswd
+RUN useradd -m -s /bin/bash deployer && echo "deployer:deployer" | chpasswd
 #RUN echo "deployer  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/deployer
 #RUN sed -i 's/www-data/deployer/' /usr/local/etc/php-fpm.d/www.conf
 
-CMD sudo php-fpm
+USER deployer
+CMD php-fpm

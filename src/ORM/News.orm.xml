@@ -14,7 +14,8 @@
     </id>
 
     <field name="name" column="name" type="string" nullable="false" />
-    <field name="description" column="description" type="string" nullable="false" />
+    <field name="description" column="description" type="text" nullable="false" />
+    <field name="datePublication" column="date_publication" type="datetime" nullable="false" />
 
     <many-to-one field="category" target-entity="App\Entity\Category" >
       <cascade>

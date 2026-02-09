@@ -1,9 +1,30 @@
+sonata:
+  admin:
+    group:
+      sponsored: "Подшефные"
+      publication: "Публикации"
+
+link_add: "Создать группу"
+
 admin:
   news: "Новости"
+  category: "Категории"
+  institution: "Учреждения"
+  group: "Группы"
+  child: "Воспитанники"
 
 breadcrumb:
   link_news_list: "Новости"
+  link_category_list: "Категории"
+  link_institution_list: "Учреждения"
+  link_group_list: "Группы"
+  link_child_list: "Воспитанники"
+
   link_news_create: "Создать новость"
+  link_category_create: "Создать категорию"
+  link_institution_create: "Создать учреждение"
+  link_group_create: "Создать группу"
+  link_child_create: "Создать воспитанника"
 
 form:
   group_general: "Основное"
@@ -14,24 +35,56 @@ form:
   label_description: "Описание"
   label_category: "Категория"
   label_date_publication: "Дата публикации"
+  label_address: "Адрес"
+  label_desire: "Пожелания"
+  label_birthday: "День рождения"
+  label_institution: "Учреждение"
+  label_group: "Группа"
+  label_groups: "Группы"
 
 show:
   group_admin_news: "Новость"
+  group_admin_category: "Категория"
+  group_admin_institution: "Учреждение"
+  group_admin_group: "Группа"
+  group_admin_child: "Воспитанник"
 
   label_id: "ID"
   label_name: "Название"
   label_description: "Описание"
   label_category: "Категория"
+  label_date_publication: "Дата публикации"
+  label_address: "Адрес"
+  label_desire: "Пожелания"
+  label_birthday: "День рождения"
+  label_institution: "Учреждение"
+  label_group: "Группа"
+  label_groups: "Группы"
 
 list:
   label__actions: "Действия"
+
   label_id: "ID"
   label_name: "Название"
   label_description: "Описание"
   label_category: "Категория"
+  label_date_publication: "Дата публикации"
+  label_address: "Адрес"
+  label_desire: "Пожелания"
+  label_birthday: "День рождения"
+  label_institution: "Учреждение"
+  label_group: "Группа"
+  label_groups: "Группы"
 
 filter:
   label_id: "ID"
   label_name: "Название"
   label_description: "Описание"
   label_category: "Категория"
+  label_date_publication: "Дата публикации"
+  label_address: "Адрес"
+  label_desire: "Пожелания"
+  label_birthday: "День рождения"
+  label_institution: "Учреждение"
+  label_group: "Группа"
+  label_groups: "Группы"

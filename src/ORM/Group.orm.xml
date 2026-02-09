@@ -15,9 +15,6 @@
 
     <field name="name" column="name" type="string" nullable="false" />
     <field name="description" column="description" type="string" nullable="false" />
-    <field name="address" column="address" type="string" length="1024" nullable="false" />
-    <field name="longitude" column="longitude" type="float" nullable="true" />
-    <field name="latitude" column="latitude" type="float" nullable="true" />
 
     <many-to-one field="institution" target-entity="App\Entity\Institution" inversed-by="groups" >
       <cascade>

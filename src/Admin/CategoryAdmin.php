@@ -4,7 +4,6 @@ namespace App\Admin;
 
 use App\Entity\Category;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
-use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
@@ -15,16 +14,8 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-final class NewsAdmin extends AbstractAdmin
+final class CategoryAdmin extends AbstractAdmin
 {
-    protected function configureDefaultSortValues(array &$sortValues): void
-    {
-        $sortValues = [
-            DatagridInterface::SORT_ORDER => 'DESC',
-            DatagridInterface::SORT_BY    => 'createdAt',
-        ];
-    }
-
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -32,12 +23,6 @@ final class NewsAdmin extends AbstractAdmin
                 ->add('name', TextType::class)
                 ->add('description', TextareaType::class, [
                     'attr' => ['rows' => 7],
-                ])
-            ->end()
-            ->with('information', ['class' => 'col-md-3'])
-                ->add('datePublication', DateTimeType::class)
-                ->add('category', EntityType::class, [
-                    'class' => Category::class,
                 ])
             ->end()
         ;
@@ -48,25 +33,19 @@ final class NewsAdmin extends AbstractAdmin
         $datagrid
             ->add('id')
             ->add('name')
-//            ->add('datePublication')
-            ->add('category')
         ;
     }
 
     protected function configureListFields(ListMapper $list): void
     {
         $list
-            ->addIdentifier('id')
+            ->add('id')
             ->add('name')
             ->add('description', FieldDescriptionInterface::TYPE_HTML, [
                 'truncate' => [
                     'length' => 300
                 ]
             ])
-            ->add('datePublication', 'datetime', [
-                'format' => 'd.m.Y',
-            ])
-            ->add('category')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show'   => [],
@@ -83,8 +62,6 @@ final class NewsAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
-//            ->add('datePublication')
-            ->add('category')
         ;
     }
 }
