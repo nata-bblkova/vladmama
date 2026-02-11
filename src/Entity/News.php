@@ -2,8 +2,7 @@
 
 namespace App\Entity;
 
-use App\Model\CoordinatesInterface;
-use App\Model\CoordinatesTrait;
+use App\Entity\Media\Media;
 use App\Model\ResourceInterface;
 use App\Model\ResourceTrait;
 use App\Model\TimestampableInterface;
@@ -19,7 +18,7 @@ class News implements ResourceInterface, TimestampableInterface
     private string $description;
     private DateTime $datePublication;
     private Category $category;
-    //    private string $image;
+    private ?Media $image = null;
 
     public function __toString(): string
     {
@@ -72,5 +71,17 @@ class News implements ResourceInterface, TimestampableInterface
     public function getCategory(): Category
     {
         return $this->category;
+    }
+
+    public function setImage(?Media $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImage(): ?Media
+    {
+        return $this->image;
     }
 }

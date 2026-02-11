@@ -16,6 +16,14 @@
     <field name="name" column="name" type="string" nullable="false" />
     <field name="description" column="description" type="string" nullable="false" />
 
+    <one-to-one field="image" target-entity="App\Entity\Media\Media" orphan-removal="true" >
+      <cascade>
+        <cascade-persist/>
+        <cascade-remove/>
+      </cascade>
+      <join-column name="image_id" referenced-column-name="id" nullable="true" unique="true" on-delete="SET NULL" />
+    </one-to-one>
+
     <field name="createdAt" column="created_at" type="datetime" nullable="false" />
     <field name="updatedAt" column="updated_at" type="datetime" nullable="false" />
     <lifecycle-callbacks>

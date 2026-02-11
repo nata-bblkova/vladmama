@@ -19,6 +19,14 @@
     <field name="longitude" column="longitude" type="float" nullable="true" />
     <field name="latitude" column="latitude" type="float" nullable="true" />
 
+    <one-to-one field="image" target-entity="App\Entity\Media\Media" orphan-removal="true" >
+      <cascade>
+        <cascade-persist/>
+        <cascade-remove/>
+      </cascade>
+      <join-column name="image_id" referenced-column-name="id" nullable="true" unique="true" on-delete="SET NULL" />
+    </one-to-one>
+
     <one-to-many field="groups" target-entity="App\Entity\Group" mapped-by="institution" orphan-removal="false" >
       <cascade>
         <cascade-persist/>

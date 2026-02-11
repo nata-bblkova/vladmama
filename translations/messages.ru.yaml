@@ -41,6 +41,9 @@ form:
   label_institution: "Учреждение"
   label_group: "Группа"
   label_groups: "Группы"
+  label_image:  "Изображение"
+  label_created_at: "Дата создания"
+  label_updated_at: "Дата обновления"
 
 show:
   group_admin_news: "Новость"
@@ -60,6 +63,9 @@ show:
   label_institution: "Учреждение"
   label_group: "Группа"
   label_groups: "Группы"
+  label_image:  "Изображение"
+  label_created_at: "Дата создания"
+  label_updated_at: "Дата обновления"
 
 list:
   label__actions: "Действия"
@@ -75,6 +81,9 @@ list:
   label_institution: "Учреждение"
   label_group: "Группа"
   label_groups: "Группы"
+  label_image:  "Изображение"
+  label_created_at: "Дата создания"
+  label_updated_at: "Дата обновления"
 
 filter:
   label_id: "ID"
@@ -88,3 +97,6 @@ filter:
   label_institution: "Учреждение"
   label_group: "Группа"
   label_groups: "Группы"
+  label_image:  "Изображение"
+  label_created_at: "Дата создания"
+  label_updated_at: "Дата обновления"

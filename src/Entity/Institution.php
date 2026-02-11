@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Media\Media;
 use App\Model\CoordinatesInterface;
 use App\Model\CoordinatesTrait;
 use App\Model\ResourceInterface;
@@ -21,7 +22,7 @@ class Institution implements ResourceInterface, TimestampableInterface, Coordina
     private string $name;
     private string $description;
     private string $address;
-//    private string $image;
+    private ?Media $image = null;
 
     /** @var Collection<Group> */
     private Collection $groups;
@@ -72,9 +73,18 @@ class Institution implements ResourceInterface, TimestampableInterface, Coordina
         return $this->address;
     }
 
-    /**
-     * @param Collection<Group> $groups
-     */
+    public function setImage(?Media $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    public function getImage(): ?Media
+    {
+        return $this->image;
+    }
+
     public function setGroups(Collection $groups): static
     {
         $this->groups = $groups;
@@ -96,9 +106,6 @@ class Institution implements ResourceInterface, TimestampableInterface, Coordina
         return $this;
     }
 
-    /**
-     * @return Collection<Group>
-     */
     public function getGroups(): Collection
     {
         return $this->groups;

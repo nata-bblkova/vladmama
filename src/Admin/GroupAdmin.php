@@ -23,7 +23,7 @@ final class GroupAdmin extends AbstractAdmin
         $form
             ->add('name', TextType::class)
             ->add('description', TextareaType::class, [
-                'attr' => ['rows' => 7],
+                'attr' => ['rows' => 3],
             ])
         ;
     }
@@ -35,6 +35,8 @@ final class GroupAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('institution')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 }

@@ -6,6 +6,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
     libicu-dev \
     libpng-dev \
     libjpeg-dev \
+    unzip \
     nano
 
 # libpng-dev, libjpeg-dev нужны для gd
@@ -38,12 +39,13 @@ RUN docker-php-ext-configure intl \
 #    && docker-php-ext-install pcntl
 
 # Setup git
-#RUN git config --global alias.st status
+RUN git config --global alias.st status
 
 # setup new user for running app
 RUN useradd -m -s /bin/bash deployer && echo "deployer:deployer" | chpasswd
-#RUN echo "deployer  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/deployer
-#RUN sed -i 's/www-data/deployer/' /usr/local/etc/php-fpm.d/www.conf
+RUN echo "deployer  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/deployer
+RUN sed -i 's/www-data/deployer/' /usr/local/etc/php-fpm.d/www.conf
 
 USER deployer
-CMD php-fpm
+#CMD php-fpm
+CMD sudo php-fpm

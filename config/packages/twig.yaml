@@ -1,6 +1,9 @@
 twig:
     file_name_pattern: '*.twig'
 
+    form_themes:
+        - '@SonataMedia/Form/media_widgets.html.twig'
+
 when@test:
     twig:
         strict_variables: true

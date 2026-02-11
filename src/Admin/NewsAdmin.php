@@ -10,6 +10,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -34,7 +35,16 @@ final class NewsAdmin extends AbstractAdmin
                     'attr' => ['rows' => 7],
                 ])
             ->end()
-            ->with('information', ['class' => 'col-md-3'])
+            ->with('media', ['class' => 'col-md-6'])
+            ->add('image', MediaType::class, [
+                'required'      => false,
+                'new_on_update' => false, // чтобы можно было обновлять фото, не удаляя предыдущее
+
+                'provider' => 'sonata.media.provider.image',
+                'context'  => 'news',
+            ])
+            ->end()
+            ->with('information', ['class' => 'col-md-6'])
                 ->add('datePublication', DateTimeType::class)
                 ->add('category', EntityType::class, [
                     'class' => Category::class,
@@ -58,6 +68,7 @@ final class NewsAdmin extends AbstractAdmin
         $list
             ->addIdentifier('id')
             ->add('name')
+            ->add('image', 'image')
             ->add('description', FieldDescriptionInterface::TYPE_HTML, [
                 'truncate' => [
                     'length' => 300
@@ -85,6 +96,8 @@ final class NewsAdmin extends AbstractAdmin
             ->add('description')
 //            ->add('datePublication')
             ->add('category')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 }

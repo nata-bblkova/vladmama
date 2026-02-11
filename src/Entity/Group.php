@@ -16,7 +16,6 @@ class Group implements ResourceInterface, TimestampableInterface
 
     private string $name;
     private string $description;
-    //    private string $image;
     private Institution $institution;
 
     public function __toString(): string

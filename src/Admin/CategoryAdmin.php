@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
+use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -23,6 +24,15 @@ final class CategoryAdmin extends AbstractAdmin
                 ->add('name', TextType::class)
                 ->add('description', TextareaType::class, [
                     'attr' => ['rows' => 7],
+                ])
+            ->end()
+            ->with('media', ['class' => 'col-md-6'])
+                ->add('image', MediaType::class, [
+                    'required'      => false,
+                    'new_on_update' => false, // чтобы можно было обновлять фото, не удаляя предыдущее
+
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'category',
                 ])
             ->end()
         ;
@@ -41,6 +51,7 @@ final class CategoryAdmin extends AbstractAdmin
         $list
             ->add('id')
             ->add('name')
+            ->add('image', 'image')
             ->add('description', FieldDescriptionInterface::TYPE_HTML, [
                 'truncate' => [
                     'length' => 300
@@ -62,6 +73,8 @@ final class CategoryAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 }

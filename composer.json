@@ -67,5 +67,8 @@
             "allow-contrib": false,
             "require": "7.4.*"
         }
+    },
+    "require-dev": {
+        "symfony/web-profiler-bundle": "7.4.*"
     }
 }

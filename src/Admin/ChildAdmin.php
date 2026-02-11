@@ -30,13 +30,13 @@ final class ChildAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form): void
     {
         $form
-            ->with('general', ['class' => 'col-md-6'])
+            ->with('general', ['class' => 'col-md-8'])
                 ->add('name', TextType::class)
                 ->add('desire', TextareaType::class, [
                     'attr' => ['rows' => 7],
                 ])
             ->end()
-            ->with('information', ['class' => 'col-md-3'])
+            ->with('information', ['class' => 'col-md-4'])
                 ->add('birthday', DateTimeType::class)
                 ->add('institution', EntityType::class, [
                     'class' => Institution::class,
@@ -86,6 +86,8 @@ final class ChildAdmin extends AbstractAdmin
             ->add('birthday')
             ->add('institution')
             ->add('group')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 }

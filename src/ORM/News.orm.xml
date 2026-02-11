@@ -17,6 +17,14 @@
     <field name="description" column="description" type="text" nullable="false" />
     <field name="datePublication" column="date_publication" type="datetime" nullable="false" />
 
+    <one-to-one field="image" target-entity="App\Entity\Media\Media" orphan-removal="true" >
+      <cascade>
+        <cascade-persist/>
+        <cascade-remove/>
+      </cascade>
+      <join-column name="image_id" referenced-column-name="id" nullable="true" unique="true" on-delete="SET NULL" />
+    </one-to-one>
+
     <many-to-one field="category" target-entity="App\Entity\Category" >
       <cascade>
         <cascade-persist/>

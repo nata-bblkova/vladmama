@@ -78,3 +78,12 @@ services:
                 label: 'admin.child',
                 label_translator_strategy: 'sonata.admin.label.strategy.underscore'
             }
+
+    App\Admin\MediaAdmin:
+        arguments:
+            - ~
+            - App\Entity\Media\Media
+            - ~
+            - '@sonata.media.pool'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'admin.media', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }

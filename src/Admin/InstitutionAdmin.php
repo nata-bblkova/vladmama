@@ -12,6 +12,7 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\Form\Type\CollectionType;
+use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -27,9 +28,16 @@ final class InstitutionAdmin extends AbstractAdmin
                 ->add('description', TextareaType::class, [
                     'attr' => ['rows' => 7],
                 ])
+                ->add('address')
+                ->add('image', MediaType::class, [
+                    'required'      => false,
+                    'new_on_update' => false, // чтобы можно было обновлять фото, не удаляя предыдущее
+
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'institution',
+                ])
             ->end()
             ->with('information', ['class' => 'col-md-6'])
-                ->add('address')
                 ->add('groups',CollectionType::class, [
                     'by_reference' => false,
                     'btn_translation_domain' => 'messages',
@@ -58,6 +66,7 @@ final class InstitutionAdmin extends AbstractAdmin
         $list
             ->addIdentifier('id')
             ->add('name')
+            ->add('image', 'image')
             ->add('description', FieldDescriptionInterface::TYPE_HTML, [
                 'truncate' => [
                     'length' => 300
@@ -81,6 +90,8 @@ final class InstitutionAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('address')
+            ->add('createdAt')
+            ->add('updatedAt')
         ;
     }
 }

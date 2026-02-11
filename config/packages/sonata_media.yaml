@@ -1,5 +1,11 @@
 sonata_media:
+    class:
+        media: App\Entity\Media\Media
+        gallery: App\Entity\Media\Gallery
+        gallery_item: App\Entity\Media\GalleryItem
+
     default_context: default
+    db_driver: doctrine_orm
     contexts:
         default:
             providers:
@@ -12,6 +18,18 @@ sonata_media:
             formats:
                 small: { width: 100 , quality: 70}
                 big:   { width: 500 , quality: 70}
+
+        news:
+            providers:
+                - sonata.media.provider.image
+
+        category:
+            providers:
+                - sonata.media.provider.image
+
+        institution:
+            providers:
+                - sonata.media.provider.image
 
     cdn:
         server:
