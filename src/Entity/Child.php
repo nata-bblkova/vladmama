@@ -14,11 +14,9 @@ class Child implements ResourceInterface, TimestampableInterface
     use TimestampableTrait;
 
     private string $name;
-    private string $description;
     private ?string $desire = null;
-    private Institution $institution;
     private ?Group $group = null;
-    private DateTime $birthday;
+    private ?DateTime $birthday = null;
 
     public function __toString(): string
     {
@@ -73,18 +71,6 @@ class Child implements ResourceInterface, TimestampableInterface
         return $this->desire;
     }
 
-    public function setInstitution(Institution $institution): static
-    {
-        $this->institution = $institution;
-
-        return $this;
-    }
-
-    public function getInstitution(): Institution
-    {
-        return $this->institution;
-    }
-
     public function setGroup(?Group $group): static
     {
         $this->group = $group;
@@ -97,14 +83,14 @@ class Child implements ResourceInterface, TimestampableInterface
         return $this->group;
     }
 
-    public function setBirthday(DateTime $birthday): static
+    public function setBirthday(?DateTime $birthday): static
     {
         $this->birthday = $birthday;
 
         return $this;
     }
 
-    public function getBirthday(): DateTime
+    public function getBirthday(): ?DateTime
     {
         return $this->birthday;
     }

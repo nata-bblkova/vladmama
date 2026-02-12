@@ -11,12 +11,12 @@ sonata_admin:
         label_catalogue: messages
         icon:            '<i class="fa fa-home"></i>'
         items:
-          - admin.institution
-          - admin.children
+          - App\Admin\InstitutionAdmin
+          - App\Admin\ChildAdmin
 
       sonata.admin.group.publication:
         label_catalogue: messages
         icon: '<i class="fa fa-users"></i>'
         items:
-          - admin.category
-          - admin.news
+          - App\Admin\CategoryAdmin
+          - App\Admin\NewsAdmin

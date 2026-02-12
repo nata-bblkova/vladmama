@@ -73,8 +73,12 @@ final class CategoryAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
+            ->add('updatedAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
         ;
     }
 }

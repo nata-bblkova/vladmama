@@ -29,6 +29,7 @@ breadcrumb:
 form:
   group_general: "Основное"
   group_information: "Информация"
+  group_media: "Медиа"
 
   label_id: "ID"
   label_name: "Название"

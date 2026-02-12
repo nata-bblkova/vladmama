@@ -34,6 +34,10 @@ final class NewsAdmin extends AbstractAdmin
                 ->add('description', TextareaType::class, [
                     'attr' => ['rows' => 7],
                 ])
+                ->add('category', EntityType::class, [
+                    'class' => Category::class,
+                ])
+                ->add('datePublication', DateTimeType::class)
             ->end()
             ->with('media', ['class' => 'col-md-6'])
             ->add('image', MediaType::class, [
@@ -43,12 +47,6 @@ final class NewsAdmin extends AbstractAdmin
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'news',
             ])
-            ->end()
-            ->with('information', ['class' => 'col-md-6'])
-                ->add('datePublication', DateTimeType::class)
-                ->add('category', EntityType::class, [
-                    'class' => Category::class,
-                ])
             ->end()
         ;
     }
@@ -94,10 +92,16 @@ final class NewsAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
-//            ->add('datePublication')
+            ->add('datePublication', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
             ->add('category')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
+            ->add('updatedAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
         ;
     }
 }

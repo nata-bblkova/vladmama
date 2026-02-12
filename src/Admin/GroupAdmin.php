@@ -35,8 +35,12 @@ final class GroupAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('institution')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
+            ->add('updatedAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
         ;
     }
 }

@@ -90,8 +90,12 @@ final class InstitutionAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('address')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
+            ->add('updatedAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
         ;
     }
 }

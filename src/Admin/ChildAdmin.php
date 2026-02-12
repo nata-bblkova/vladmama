@@ -38,11 +38,9 @@ final class ChildAdmin extends AbstractAdmin
             ->end()
             ->with('information', ['class' => 'col-md-4'])
                 ->add('birthday', DateTimeType::class)
-                ->add('institution', EntityType::class, [
-                    'class' => Institution::class,
-                ])
                 ->add('group', EntityType::class, [
                     'class' => Group::class,
+                    'required' => false,
                 ])
             ->end()
         ;
@@ -54,7 +52,6 @@ final class ChildAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('desire')
-            ->add('institution')
             ->add('group')
         ;
     }
@@ -65,7 +62,6 @@ final class ChildAdmin extends AbstractAdmin
             ->addIdentifier('id')
             ->add('name')
             ->add('desire')
-            ->add('institution')
             ->add('group')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
@@ -83,11 +79,16 @@ final class ChildAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('desire')
-            ->add('birthday')
-            ->add('institution')
+            ->add('birthday', 'datetime', [
+                'format' => 'd.m.Y',
+            ])
             ->add('group')
-            ->add('createdAt')
-            ->add('updatedAt')
+            ->add('createdAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
+            ->add('updatedAt', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
         ;
     }
 }

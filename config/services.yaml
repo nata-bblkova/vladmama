@@ -3,7 +3,10 @@
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
-parameters:
+#parameters:
+
+imports:
+    - { resource: admin.yaml }
 
 services:
     # default configuration for services in *this* file
@@ -18,72 +21,8 @@ services:
         exclude:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
+            - '../src/Admin/'
             - '../src/Kernel.php'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
-
-
-    admin.news:
-        class: App\Admin\NewsAdmin
-        tags:
-            - {
-                name: sonata.admin,
-                model_class: App\Entity\News,
-                manager_type: orm,
-                label: 'admin.news',
-                label_translator_strategy: 'sonata.admin.label.strategy.underscore'
-            }
-
-    admin.category:
-        class: App\Admin\CategoryAdmin
-        tags:
-            - {
-                name: sonata.admin,
-                model_class: App\Entity\Category,
-                manager_type: orm,
-                label: 'admin.category',
-                label_translator_strategy: 'sonata.admin.label.strategy.underscore'
-            }
-
-    admin.institution:
-        class: App\Admin\InstitutionAdmin
-        tags:
-            - {
-                name: sonata.admin,
-                model_class: App\Entity\Institution,
-                manager_type: orm,
-                label: 'admin.institution',
-                label_translator_strategy: 'sonata.admin.label.strategy.underscore'
-            }
-
-    admin.group:
-        class: App\Admin\GroupAdmin
-        tags:
-            - {
-                name: sonata.admin,
-                model_class: App\Entity\Group,
-                manager_type: orm,
-                label: 'admin.group',
-                label_translator_strategy: 'sonata.admin.label.strategy.underscore'
-            }
-
-    admin.children:
-        class: App\Admin\ChildAdmin
-        tags:
-            - {
-                name: sonata.admin,
-                model_class: App\Entity\Child,
-                manager_type: orm,
-                label: 'admin.child',
-                label_translator_strategy: 'sonata.admin.label.strategy.underscore'
-            }
-
-    App\Admin\MediaAdmin:
-        arguments:
-            - ~
-            - App\Entity\Media\Media
-            - ~
-            - '@sonata.media.pool'
-        tags:
-            - { name: sonata.admin, manager_type: orm, label: 'admin.media', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }

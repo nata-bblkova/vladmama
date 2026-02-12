@@ -15,20 +15,13 @@
 
     <field name="name" column="name" type="string" nullable="false" />
     <field name="desire" column="desire" type="string" nullable="true" />
-    <field name="birthday" column="birthday" type="datetime" nullable="false" />
+    <field name="birthday" column="birthday" type="datetime" nullable="true" />
 
     <many-to-one field="group" target-entity="App\Entity\Group">
       <cascade>
         <cascade-persist/>
       </cascade>
       <join-column name="group_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
-    </many-to-one>
-
-    <many-to-one field="institution" target-entity="App\Entity\Institution">
-      <cascade>
-        <cascade-persist/>
-      </cascade>
-      <join-column name="institution_id" referenced-column-name="id" nullable="true" on-delete="SET NULL" />
     </many-to-one>
 
     <field name="createdAt" column="created_at" type="datetime" nullable="false" />
