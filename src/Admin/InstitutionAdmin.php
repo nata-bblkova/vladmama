@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\Category;
+use App\Service\YandexGeocoderService;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -20,6 +21,34 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class InstitutionAdmin extends AbstractAdmin
 {
+    private YandexGeocoderService $yandexGeocoderService;
+    public function __construct(YandexGeocoderService $yandexGeocoderService, ?string $code = null, ?string $class = null, ?string $baseControllerName = null)
+    {
+        parent::__construct($code, $class, $baseControllerName);
+
+        $this->yandexGeocoderService = $yandexGeocoderService;
+    }
+
+    protected function preUpdate(object $object): void
+    {
+        $this->updateCoordinates($object);
+    }
+
+    protected function prePersist(object $object): void
+    {
+        $this->updateCoordinates($object);
+    }
+
+    private function updateCoordinates(object $object): void
+    {
+        $coordinates = $this->yandexGeocoderService->getCoordinatesByAddress($object->getAddress());
+
+        $object
+            ->setLatitude($coordinates['latitude'])
+            ->setLongitude($coordinates['longitude'])
+        ;
+    }
+
     protected function configureFormFields(FormMapper $form): void
     {
         $form
@@ -38,7 +67,7 @@ final class InstitutionAdmin extends AbstractAdmin
                 ])
             ->end()
             ->with('information', ['class' => 'col-md-6'])
-                ->add('groups',CollectionType::class, [
+                ->add('groups', CollectionType::class, [
                     'by_reference' => false,
                     'btn_translation_domain' => 'messages',
 
@@ -46,7 +75,7 @@ final class InstitutionAdmin extends AbstractAdmin
                     'btn_delete' => true,
                     'edit'       => 'inline',
                     'inline'     => 'table',
-                    'admin_code' => 'admin.group',
+                    'admin_code' => 'App\Admin\GroupAdmin',
                 ])
             ->end()
         ;

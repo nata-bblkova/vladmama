@@ -6,11 +6,11 @@ use DateTime;
 
 interface CoordinatesInterface
 {
-    public function setCreatedAt(DateTime $createdAt): static;
+    public function setLongitude(?float $longitude): static;
 
-    public function getCreatedAt(): DateTime;
+    public function getLongitude(): ?float;
 
-    public function setUpdatedAt(DateTime $updatedAt): static;
+    public function setLatitude(?float $latitude): static;
 
-    public function getUpdatedAt(): DateTime;
+    public function getLatitude(): ?float;
 }

@@ -27,8 +27,8 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 RUN docker-php-ext-configure intl \
     && docker-php-ext-install intl \
     && docker-php-ext-install pdo_mysql \
-#    && pecl install xdebug \
-#    && docker-php-ext-enable xdebug \
+    && pecl install xdebug \
+    && docker-php-ext-enable xdebug \
 #    && PHP_OPENSSL=yes docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
 #    && docker-php-ext-install imap \
 #    && pecl install ast \
@@ -38,8 +38,8 @@ RUN docker-php-ext-configure intl \
 #    && docker-php-ext-configure pcntl --enable-pcntl \
 #    && docker-php-ext-install pcntl
 
-# Setup git
-RUN git config --global alias.st status
+RUN cp /usr/local/etc/php/php.ini-development /usr/local/etc/php/php.ini
+COPY conf.d/*.ini /usr/local/etc/php/conf.d/
 
 # setup new user for running app
 RUN useradd -m -s /bin/bash deployer && echo "deployer:deployer" | chpasswd
