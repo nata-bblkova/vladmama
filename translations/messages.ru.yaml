@@ -3,8 +3,12 @@ sonata:
     group:
       sponsored: "Подшефные"
       publication: "Публикации"
+      settings: "Настройки"
 
 link_add: "Создать группу"
+
+ROLE_SUPER_ADMIN: "Супер-админ"
+ROLE_USER: "Пользователь"
 
 admin:
   news: "Новости"
@@ -12,6 +16,8 @@ admin:
   institution: "Учреждения"
   group: "Группы"
   child: "Воспитанники"
+  promotion: "Акции"
+  user: "Пользователи"
 
 breadcrumb:
   link_news_list: "Новости"
@@ -19,12 +25,16 @@ breadcrumb:
   link_institution_list: "Учреждения"
   link_group_list: "Группы"
   link_child_list: "Воспитанники"
+  link_promotion_list: "Акции"
+  link_user_list: "Пользователи"
 
   link_news_create: "Создать новость"
   link_category_create: "Создать категорию"
   link_institution_create: "Создать учреждение"
   link_group_create: "Создать группу"
   link_child_create: "Создать воспитанника"
+  link_promotion_create: "Создать акцию"
+  link_user_create: "Создать пользователя"
 
 form:
   group_general: "Основное"
@@ -45,6 +55,17 @@ form:
   label_image:  "Изображение"
   label_created_at: "Дата создания"
   label_updated_at: "Дата обновления"
+  label_rules: "Правила проведения"
+  label_start_date: "Дата начала"
+  label_end_date: "Дата окончания"
+  label_institutions_for_promotion: "Учреждения, участвующие в акции"
+  label_username: "Никнейм"
+  label_email: "Электронная почта"
+  label_enabled: "Включен"
+  label_plain_password: "Пароль"
+  label_firstname: "Имя"
+  label_lastname: "Фамилия"
+  label_middlename: "Отчество"
 
 show:
   group_admin_news: "Новость"
@@ -52,6 +73,8 @@ show:
   group_admin_institution: "Учреждение"
   group_admin_group: "Группа"
   group_admin_child: "Воспитанник"
+  group_admin_promotion: "Акция"
+  group_admin_user: "Пользователь"
 
   label_id: "ID"
   label_name: "Название"
@@ -67,6 +90,18 @@ show:
   label_image:  "Изображение"
   label_created_at: "Дата создания"
   label_updated_at: "Дата обновления"
+  label_rules: "Правила проведения"
+  label_start_date: "Дата начала"
+  label_end_date: "Дата окончания"
+  label_institutions_for_promotion: "Учреждения, участвующие в акции"
+  label_username: "Никнейм"
+  label_email: "Электронная почта"
+  label_enabled: "Включен"
+  label_plain_password: "Пароль"
+  label_firstname: "Имя"
+  label_lastname: "Фамилия"
+  label_middlename: "Отчество"
+  label_roles: "Роли"
 
 list:
   label__actions: "Действия"
@@ -85,6 +120,16 @@ list:
   label_image:  "Изображение"
   label_created_at: "Дата создания"
   label_updated_at: "Дата обновления"
+  label_rules: "Правила проведения"
+  label_start_date: "Дата начала"
+  label_end_date: "Дата окончания"
+  label_username: "Никнейм"
+  label_email: "Электронная почта"
+  label_enabled: "Включен"
+  label_firstname: "Имя"
+  label_lastname: "Фамилия"
+  label_middlename: "Отчество"
+  label_roles: "Роли"
 
 filter:
   label_id: "ID"
@@ -101,3 +146,12 @@ filter:
   label_image:  "Изображение"
   label_created_at: "Дата создания"
   label_updated_at: "Дата обновления"
+  label_rules: "Правила проведения"
+  label_start_date: "Дата начала"
+  label_end_date: "Дата окончания"
+  label_username: "Никнейм"
+  label_email: "Электронная почта"
+  label_enabled: "Включен"
+  label_firstname: "Имя"
+  label_lastname: "Фамилия"
+  label_middlename: "Отчество"

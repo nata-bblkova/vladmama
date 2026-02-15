@@ -1,17 +1,5 @@
 CONSOLE := php bin/console
 
-m:
-	$(CONSOLE) doctrine:migrations:migrate latest
-
-mn:
-	$(CONSOLE) doctrine:migrations:migrate next
-
-mp:
-	$(CONSOLE) doctrine:migrations:migrate prev
-
-md:
-	$(CONSOLE) doctrine:migrations:diff
-
 du:
 	docker-compose up --build -d
 
@@ -29,3 +17,20 @@ ded:
 
 deh:
 	docker-compose exec httpd bash
+
+
+m:
+	$(CONSOLE) doctrine:migrations:migrate latest
+
+mn:
+	$(CONSOLE) doctrine:migrations:migrate next
+
+mp:
+	$(CONSOLE) doctrine:migrations:migrate prev
+
+md:
+	$(CONSOLE) doctrine:migrations:diff
+
+
+csa:
+	$(CONSOLE) sonata:user:create admin admin@admin.ru admin --super-admin

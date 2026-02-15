@@ -1,17 +1,47 @@
 security:
+    role_hierarchy:
+        ROLE_ADMIN: [ ROLE_USER, ROLE_SONATA_ADMIN ]
+        ROLE_SUPER_ADMIN: [ ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH ]
     # https://symfony.com/doc/current/security.html#registering-the-user-hashing-passwords
     password_hashers:
         Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
     # https://symfony.com/doc/current/security.html#loading-the-user-the-user-provider
     providers:
+        admin_user_provider:
+            entity:
+                class: App\Entity\User
         users_in_memory: { memory: null }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        admin:
+            lazy: true
+            pattern: /admin(.*)
+            context: user
+            form_login:
+                provider: admin_user_provider
+                login_path: sonata_user_admin_security_login
+                use_forward: true
+                check_path: sonata_user_admin_security_check
+                failure_path: false
+                default_target_path: sonata_admin_dashboard
+
+            logout:
+                path: sonata_user_admin_security_logout
+                target: sonata_user_admin_security_login
+
+            remember_me:
+                secret: '%env(APP_SECRET)%'
+                lifetime: 2629746
+                path: /admin
+
         main:
             lazy: true
             provider: users_in_memory
+
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
@@ -24,6 +54,16 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
+        # Admin login page needs to be access without credential
+        - { path: ^/admin/login$, role: PUBLIC_ACCESS }
+        - { path: ^/admin/logout$, role: PUBLIC_ACCESS }
+        - { path: ^/admin/login_check$, role: PUBLIC_ACCESS }
+
+        # Secured part of the site
+        # This config requires being logged for the whole site and having the admin role for the admin part.
+        # Change these rules to adapt them to your needs
+        - { path: ^/admin/, role: [ ROLE_ADMIN, ROLE_SONATA_ADMIN ] }
+        - { path: ^/.*, role: PUBLIC_ACCESS }
 
 when@test:
     security:
@@ -37,3 +77,4 @@ when@test:
                 cost: 4 # Lowest possible value for bcrypt
                 time_cost: 3 # Lowest possible value for argon
                 memory_cost: 10 # Lowest possible value for argon
+

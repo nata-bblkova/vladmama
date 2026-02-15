@@ -1,0 +1,10 @@
+{% import '@SonataAdmin/CRUD/base_array_macro.html.twig' as show %}
+
+{% extends '@SonataAdmin/CRUD/base_show_field.html.twig' %}
+
+{% block field %}
+    {{ show.render_array(
+        value,
+        { value_translation_domain : admin.translationDomain, inline: false, display: 'values' }|merge(field_description.options)
+    ) }}
+{% endblock %}

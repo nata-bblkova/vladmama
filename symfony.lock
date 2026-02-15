@@ -121,6 +121,9 @@
             "ref": "30dba2f9b719f21b497a6302f41aac07f9079e13"
         }
     },
+    "sonata-project/user-bundle": {
+        "version": "5.18.0"
+    },
     "symfony/console": {
         "version": "7.2",
         "recipe": {
@@ -175,6 +178,18 @@
             "public/index.php",
             "src/Controller/.gitignore",
             "src/Kernel.php"
+        ]
+    },
+    "symfony/mailer": {
+        "version": "7.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "4.3",
+            "ref": "09051cfde49476e3c12cd3a0e44289ace1c75a4f"
+        },
+        "files": [
+            "config/packages/mailer.yaml"
         ]
     },
     "symfony/property-info": {

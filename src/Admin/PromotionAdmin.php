@@ -3,51 +3,38 @@
 namespace App\Admin;
 
 use App\Entity\Category;
-use App\Service\YandexGeocoderService;
+use App\Entity\Institution;
+use App\Repository\InstitutionRepository;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\FieldDescription\FieldDescriptionInterface;
 use Sonata\AdminBundle\Form\FormMapper;
-use Sonata\AdminBundle\Form\Type\ModelType;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Sonata\Form\Type\CollectionType;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
-final class InstitutionAdmin extends AbstractAdmin
+final class PromotionAdmin extends AbstractAdmin
 {
-    private YandexGeocoderService $yandexGeocoderService;
+    private InstitutionRepository $institutionRepository;
 
-    public function __construct(YandexGeocoderService $yandexGeocoderService, ?string $code = null, ?string $class = null, ?string $baseControllerName = null)
+    public function __construct(InstitutionRepository $institutionRepository, ?string $code = null, ?string $class = null, ?string $baseControllerName = null)
     {
         parent::__construct($code, $class, $baseControllerName);
 
-        $this->yandexGeocoderService = $yandexGeocoderService;
+        $this->institutionRepository = $institutionRepository;
     }
 
-    protected function preUpdate(object $object): void
+    protected function configureDefaultSortValues(array &$sortValues): void
     {
-        $this->updateCoordinates($object);
-    }
-
-    protected function prePersist(object $object): void
-    {
-        $this->updateCoordinates($object);
-    }
-
-    private function updateCoordinates(object $object): void
-    {
-        $coordinates = $this->yandexGeocoderService->getCoordinatesByAddress($object->getAddress());
-
-        $object
-            ->setLatitude($coordinates['latitude'])
-            ->setLongitude($coordinates['longitude'])
-        ;
+        $sortValues = [
+            DatagridInterface::SORT_ORDER => 'DESC',
+            DatagridInterface::SORT_BY    => 'createdAt',
+        ];
     }
 
     protected function configureFormFields(FormMapper $form): void
@@ -58,26 +45,35 @@ final class InstitutionAdmin extends AbstractAdmin
                 ->add('description', TextareaType::class, [
                     'attr' => ['rows' => 7],
                 ])
-                ->add('address')
+                ->add('rules', TextareaType::class, [
+                    'attr' => ['rows' => 7],
+                ])
+                ->add('category', EntityType::class, [
+                    'class' => Category::class,
+                ])
+                ->add('institutions', EntityType::class, [
+                    'multiple' => true,
+                    'class'    => Institution::class,
+                    'required' => false,
+                    'data'     => $this->isCurrentRoute('edit')
+                        ? $this->getSubject()->getInstitutions()
+                        : $this->institutionRepository->findAll(),
+                    'label' => 'form.label_institutions_for_promotion',
+                ])
+            ->end()
+            ->with('media', ['class' => 'col-md-6'])
                 ->add('image', MediaType::class, [
                     'required'      => false,
                     'new_on_update' => false, // чтобы можно было обновлять фото, не удаляя предыдущее
 
                     'provider' => 'sonata.media.provider.image',
-                    'context'  => 'institution',
+                    'context'  => 'promotion',
                 ])
             ->end()
             ->with('information', ['class' => 'col-md-6'])
-                ->add('groups', CollectionType::class, [
-                    'by_reference' => false,
-                    'btn_translation_domain' => 'messages',
-
-                ], [
-                    'btn_delete' => true,
-                    'edit'       => 'inline',
-                    'inline'     => 'table',
-                    'admin_code' => 'App\Admin\GroupAdmin',
-                ])
+                ->add('datePublication', DateTimeType::class)
+                ->add('startDate', DateTimeType::class)
+                ->add('endDate', DateTimeType::class)
             ->end()
         ;
     }
@@ -87,7 +83,8 @@ final class InstitutionAdmin extends AbstractAdmin
         $datagrid
             ->add('id')
             ->add('name')
-            ->add('address')
+//            ->add('datePublication')
+            ->add('category')
         ;
     }
 
@@ -102,7 +99,10 @@ final class InstitutionAdmin extends AbstractAdmin
                     'length' => 300
                 ]
             ])
-            ->add('address')
+            ->add('startDate', 'datetime', [
+                'format' => 'd.m.Y',
+            ])
+            ->add('category')
             ->add(ListMapper::NAME_ACTIONS, null, [
                 'actions' => [
                     'show'   => [],
@@ -119,7 +119,14 @@ final class InstitutionAdmin extends AbstractAdmin
             ->add('id')
             ->add('name')
             ->add('description')
-            ->add('address')
+            ->add('rules')
+            ->add('datePublication', 'datetime', [
+                'format' => 'd.m.Y, H:i:s',
+            ])
+            ->add('category')
+            ->add('institutions', null, [
+                'label' => 'show.label_institutions_for_promotion',
+            ])
             ->add('createdAt', 'datetime', [
                 'format' => 'd.m.Y, H:i:s',
             ])

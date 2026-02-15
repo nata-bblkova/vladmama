@@ -1,0 +1,7 @@
+sonata_user:
+    class:
+        user: App\Entity\User
+    resetting:
+        email:
+            address: sonata@localhost
+            sender_name: Admin

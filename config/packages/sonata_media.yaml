@@ -31,6 +31,10 @@ sonata_media:
             providers:
                 - sonata.media.provider.image
 
+        promotion:
+            providers:
+                - sonata.media.provider.image
+
     cdn:
         server:
             path: /uploads/media

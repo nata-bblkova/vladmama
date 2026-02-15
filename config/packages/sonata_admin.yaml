@@ -5,6 +5,11 @@ sonata_block:
 
 sonata_admin:
   show_mosaic_button: false
+  title: "Владмама"
+  title_logo: /logo.jpg
+  templates:
+    layout: /SonataAdminBundle/layout.html.twig
+
   dashboard:
     groups:
       sonata.admin.group.sponsored:
@@ -20,3 +25,10 @@ sonata_admin:
         items:
           - App\Admin\CategoryAdmin
           - App\Admin\NewsAdmin
+          - App\Admin\PromotionAdmin
+
+      sonata.admin.group.settings:
+        label_catalogue: messages
+        icon: '<i class="fa fa-cogs"></i>'
+        items:
+          - App\Admin\UserAdmin

@@ -6,6 +6,8 @@ sonata_doctrine_orm_admin:
         types:
             list:
                 image: 'list_image.html.twig'
+                array: 'list_array.html.twig'
 
             show:
                 image: 'show_image.html.twig'
+                array: 'show_array.html.twig'

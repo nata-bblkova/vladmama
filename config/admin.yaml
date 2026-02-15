@@ -24,7 +24,17 @@ services:
         tags:
             - { name: sonata.admin, model_class: App\Entity\Child, manager_type: orm, label: 'admin.child', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
 
+    App\Admin\PromotionAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Promotion, manager_type: orm, label: 'admin.promotion', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
     App\Admin\MediaAdmin:
         arguments: [ ~ , App\Entity\Media\Media, ~ , '@sonata.media.pool' ]
         tags:
             - { name: sonata.admin, manager_type: orm, label: 'admin.media', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\UserAdmin:
+        arguments: [ ~, App\Entity\User, ~ ]
+        decorates: 'sonata.user.admin.user'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'admin.user', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
