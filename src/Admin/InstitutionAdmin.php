@@ -3,6 +3,7 @@
 namespace App\Admin;
 
 use App\Entity\Category;
+use App\Form\Type\AddressType;
 use App\Service\YandexGeocoderService;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
@@ -58,7 +59,7 @@ final class InstitutionAdmin extends AbstractAdmin
                 ->add('description', TextareaType::class, [
                     'attr' => ['rows' => 7],
                 ])
-                ->add('address')
+                ->add('address', AddressType::class)
                 ->add('image', MediaType::class, [
                     'required'      => false,
                     'new_on_update' => false, // чтобы можно было обновлять фото, не удаляя предыдущее
@@ -97,6 +98,7 @@ final class InstitutionAdmin extends AbstractAdmin
             ->addIdentifier('id')
             ->add('name')
             ->add('image', 'image')
+            ->add('groups')
             ->add('description', FieldDescriptionInterface::TYPE_HTML, [
                 'truncate' => [
                     'length' => 300
@@ -120,6 +122,7 @@ final class InstitutionAdmin extends AbstractAdmin
             ->add('name')
             ->add('description')
             ->add('address')
+            ->add('groups')
             ->add('createdAt', 'datetime', [
                 'format' => 'd.m.Y, H:i:s',
             ])

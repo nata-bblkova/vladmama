@@ -1,0 +1,21 @@
+{% block address_row %}
+    {% block javascript %}
+        {% include 'yandex_map.html.twig' with {
+            latitude: sonata_admin.admin.subject.latitude,
+            longitude: sonata_admin.admin.subject.longitude,
+        } %}
+    {% endblock %}
+
+    <div>
+        {{ form_widget(form) }}
+        <span id="suggestions" class="select2 select2-container select2-container--bootstrap"></span>
+    </div>
+
+    <br>
+    <div class="row">
+        <div class="col-sm-12" style="display: flex; align-items: center; justify-content: center;">
+            <div id="map" style="width: 1400px; height: 400px;"></div>
+        </div>
+    </div>
+
+{% endblock %}

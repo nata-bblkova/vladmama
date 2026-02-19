@@ -6,8 +6,8 @@ use DateTime;
 
 trait CoordinatesTrait
 {
-    private ?float $longitude;
-    private ?float $latitude;
+    private ?float $longitude = null;
+    private ?float $latitude = null;
 
     public function setLongitude(?float $longitude): static
     {

@@ -41,6 +41,10 @@ class UserAdmin extends AbstractAdmin
         $show
             ->add('id')
             ->add('username')
+            ->add('enabled')
+            ->add('firstname')
+            ->add('lastname')
+            ->add('middlename')
             ->add('email')
             ->add('phone')
             ->add('roles')
@@ -79,6 +83,7 @@ class UserAdmin extends AbstractAdmin
             ->add('username')
             ->add('email')
             ->add('phone')
+            ->add('enabled')
         ;
     }
 }
