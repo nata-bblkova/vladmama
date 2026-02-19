@@ -10,6 +10,12 @@ link_add: "Создать группу"
 ROLE_SUPER_ADMIN: "Супер-админ"
 ROLE_USER: "Пользователь"
 
+# GiftStatusEnum
+CREATED: "Создан"
+USER_ASSIGNED: "Назначен пользователь"
+TRANSFERRED_TO_DELIVERY_SERVICE: "Передан в службу доставки"
+DELIVERED: "Доставлен"
+
 admin:
   news: "Новости"
   category: "Категории"
@@ -18,6 +24,7 @@ admin:
   child: "Воспитанники"
   promotion: "Акции"
   user: "Пользователи"
+  gift: "Подарки"
 
 breadcrumb:
   link_news_list: "Новости"
@@ -27,6 +34,7 @@ breadcrumb:
   link_child_list: "Воспитанники"
   link_promotion_list: "Акции"
   link_user_list: "Пользователи"
+  link_gift_list: "Подарки"
 
   link_news_create: "Создать новость"
   link_category_create: "Создать категорию"
@@ -35,6 +43,7 @@ breadcrumb:
   link_child_create: "Создать воспитанника"
   link_promotion_create: "Создать акцию"
   link_user_create: "Создать пользователя"
+  link_gift_create: "Создать подарок"
 
 form:
   group_general: "Основное"
@@ -66,6 +75,11 @@ form:
   label_firstname: "Имя"
   label_lastname: "Фамилия"
   label_middlename: "Отчество"
+  label_phone: "Телефон"
+  label_gift_status_enum: "Статус подарка"
+  label_promotion: "Акция"
+  label_child: "Ребенок"
+  label_user: "Пользователь"
 
 show:
   group_admin_news: "Новость"
@@ -75,6 +89,7 @@ show:
   group_admin_child: "Воспитанник"
   group_admin_promotion: "Акция"
   group_admin_user: "Пользователь"
+  group_admin_gift: "Подарок"
 
   label_id: "ID"
   label_name: "Название"
@@ -102,6 +117,11 @@ show:
   label_lastname: "Фамилия"
   label_middlename: "Отчество"
   label_roles: "Роли"
+  label_phone: "Телефон"
+  label_gift_status_enum: "Статус подарка"
+  label_promotion: "Акция"
+  label_child: "Ребенок"
+  label_user: "Пользователь"
 
 list:
   label__actions: "Действия"
@@ -130,6 +150,11 @@ list:
   label_lastname: "Фамилия"
   label_middlename: "Отчество"
   label_roles: "Роли"
+  label_phone: "Телефон"
+  label_gift_status_enum: "Статус подарка"
+  label_promotion: "Акция"
+  label_child: "Ребенок"
+  label_user: "Пользователь"
 
 filter:
   label_id: "ID"
@@ -155,3 +180,8 @@ filter:
   label_firstname: "Имя"
   label_lastname: "Фамилия"
   label_middlename: "Отчество"
+  label_phone: "Телефон"
+  label_gift_status_enum: "Статус подарка"
+  label_promotion: "Акция"
+  label_child: "Ребенок"
+  label_user: "Пользователь"

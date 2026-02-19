@@ -18,6 +18,7 @@ sonata_admin:
         items:
           - App\Admin\InstitutionAdmin
           - App\Admin\ChildAdmin
+          - App\Admin\GiftAdmin
 
       sonata.admin.group.publication:
         label_catalogue: messages

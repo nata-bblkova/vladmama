@@ -28,6 +28,10 @@ services:
         tags:
             - { name: sonata.admin, model_class: App\Entity\Promotion, manager_type: orm, label: 'admin.promotion', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
 
+    App\Admin\GiftAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Gift, manager_type: orm, label: 'admin.gift', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
     App\Admin\MediaAdmin:
         arguments: [ ~ , App\Entity\Media\Media, ~ , '@sonata.media.pool' ]
         tags:

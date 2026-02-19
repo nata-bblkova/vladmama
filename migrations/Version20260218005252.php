@@ -33,6 +33,7 @@ final class Version20260218005252 extends AbstractMigration
             firstname VARCHAR(255) DEFAULT NULL, 
             lastname VARCHAR(255) DEFAULT NULL, 
             middlename VARCHAR(255) DEFAULT NULL, 
+            phone VARCHAR(20) DEFAULT NULL, 
             id INT AUTO_INCREMENT NOT NULL, 
             UNIQUE INDEX UNIQ_1483A5E992FC23A8 (username_canonical), 
             UNIQUE INDEX UNIQ_1483A5E9A0D96FBF (email_canonical), 

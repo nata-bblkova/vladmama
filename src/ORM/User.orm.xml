@@ -12,6 +12,7 @@
         <field name="firstname" column="firstname" type="string" nullable="true" />
         <field name="lastname" column="lastname" type="string" nullable="true" />
         <field name="middlename" column="middlename" type="string" nullable="true" />
+        <field name="phone" column="phone" type="string" length="20" nullable="true" />
 
     </entity>
 </doctrine-mapping>

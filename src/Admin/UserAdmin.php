@@ -24,6 +24,7 @@ class UserAdmin extends AbstractAdmin
                 ->add('lastname')
                 ->add('middlename')
                 ->add('email')
+                ->add('phone')
                 ->add('plainPassword', TextType::class, [
                     'required' => $this->getSubject()->getId() === null,
                 ])
@@ -41,6 +42,7 @@ class UserAdmin extends AbstractAdmin
             ->add('id')
             ->add('username')
             ->add('email')
+            ->add('phone')
             ->add('roles')
         ;
     }
@@ -55,6 +57,7 @@ class UserAdmin extends AbstractAdmin
             ->add('username')
             ->add('roles') // можно не писать что тип "array"
             ->add('email')
+            ->add('phone')
             ->add('enabled', null, ['editable' => true])
             ->add('createdAt')
             ->add(ListMapper::NAME_ACTIONS, null, [
@@ -75,6 +78,7 @@ class UserAdmin extends AbstractAdmin
         $filter
             ->add('username')
             ->add('email')
+            ->add('phone')
         ;
     }
 }
