@@ -1,0 +1,14 @@
+Category:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      name:
+        type: String!
+      description:
+        type: String
+#      image:
+#        type: Media

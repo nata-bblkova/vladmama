@@ -7,6 +7,7 @@
   <entity
           name="App\Entity\Category"
           table="categories"
+          repository-class="App\Repository\CategoryRepository"
   >
 
     <id name="id" type="integer" column="id">

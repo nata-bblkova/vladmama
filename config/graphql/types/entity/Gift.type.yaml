@@ -1,0 +1,18 @@
+Gift:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      description:
+        type: String!
+      giftStatusEnum:
+        type: GiftStatusEnum!
+      promotion:
+        type: Promotion!
+      child:
+        type: Child!
+      user:
+        type: User

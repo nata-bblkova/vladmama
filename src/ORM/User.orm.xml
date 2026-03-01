@@ -3,7 +3,8 @@
     <entity
             name="App\Entity\User"
             table="users"
-            repository-class="App\Repository\UserRepository">
+            repository-class="App\Repository\UserRepository"
+    >
 
         <id name="id" column="id" type="integer">
             <generator strategy="AUTO" />
@@ -13,6 +14,12 @@
         <field name="lastname" column="lastname" type="string" nullable="true" />
         <field name="middlename" column="middlename" type="string" nullable="true" />
         <field name="phone" column="phone" type="string" length="20" nullable="true" />
+
+        <one-to-many field="gifts" target-entity="App\Entity\Gift" mapped-by="user" orphan-removal="false" >
+            <cascade>
+                <cascade-persist/>
+            </cascade>
+        </one-to-many>
 
     </entity>
 </doctrine-mapping>

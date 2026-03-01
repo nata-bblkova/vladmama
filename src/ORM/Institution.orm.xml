@@ -7,6 +7,7 @@
   <entity
           name="App\Entity\Institution"
           table="institutions"
+          repository-class="App\Repository\InstitutionRepository"
   >
 
     <id name="id" type="integer" column="id">

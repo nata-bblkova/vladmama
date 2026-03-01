@@ -1,0 +1,20 @@
+User:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      firstname:
+        type: String
+      lastname:
+        type: String
+      middlename:
+        type: String
+      phone:
+        type: String
+      email:
+        type: String!
+      gifts:
+        type: '[Gift]'

@@ -1,0 +1,8 @@
+Timestamp:
+  decorator: true
+  config:
+    fields:
+      createdAt:
+        type: DateTime!
+      updatedAt:
+        type: DateTime!

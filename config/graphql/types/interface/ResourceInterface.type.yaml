@@ -1,0 +1,6 @@
+ResourceInterface:
+  type: interface
+  config:
+    fields:
+      id:
+        type: Int!

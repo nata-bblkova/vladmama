@@ -1,0 +1,66 @@
+Query:
+  type: object
+  config:
+    fields:
+      category:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\CategoryResolver::resolve", args["id"])'
+        type: Category
+      categories:
+        resolve: '@=query("App\\GraphQL\\Resolver\\CategoryResolver::resolveList")'
+        type: '[Category!]'
+
+      child:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\ChildResolver::resolve", args["id"])'
+        type: Child
+      children:
+        resolve: '@=query("App\\GraphQL\\Resolver\\ChildResolver::resolveList")'
+        type: '[Child!]'
+
+      gift:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\GiftResolver::resolve", args["id"])'
+        type: Gift
+      gifts:
+        resolve: '@=query("App\\GraphQL\\Resolver\\GiftResolver::resolveList")'
+        type: '[Gift!]'
+
+      institution:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\InstitutionResolver::resolve", args["id"])'
+        type: Institution
+      institutions:
+        resolve: '@=query("App\\GraphQL\\Resolver\\InstitutionResolver::resolveList")'
+        type: '[Institution!]'
+
+      news:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\NewsResolver::resolve", args["id"])'
+        type: News
+      newsList:
+        resolve: '@=query("App\\GraphQL\\Resolver\\NewsResolver::resolveList")'
+        type: '[News!]'
+
+      promotion:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\PromotionResolver::resolve", args["id"])'
+        type: Promotion
+      promotions:
+        resolve: '@=query("App\\GraphQL\\Resolver\\PromotionResolver::resolveList")'
+        type: '[Promotion!]'
+
+      user:
+        args:
+          id: Int!
+        resolve: '@=query("App\\GraphQL\\Resolver\\UserResolver::resolve", args["id"])'
+        type: User
+      users:
+        resolve: '@=query("App\\GraphQL\\Resolver\\UserResolver::resolveList")'
+        type: '[User!]'

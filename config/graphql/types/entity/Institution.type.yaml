@@ -1,0 +1,22 @@
+Institution:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      name:
+        type: String!
+      description:
+        type: String!
+      address:
+        type: String!
+      latitude:
+        type: Float
+      longitude:
+        type: Float
+##      image:
+##        type: Media
+      groups:
+        type: '[Group!]'

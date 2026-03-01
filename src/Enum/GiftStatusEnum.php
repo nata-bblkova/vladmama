@@ -4,8 +4,8 @@ namespace App\Enum;
 
 enum GiftStatusEnum: string
 {
-    case CREATED = 'Создан';
-    case USER_ASSIGNED = 'Назначен пользователь';
-    case TRANSFERRED_TO_DELIVERY_SERVICE = 'Передан в службу доставки';
-    case DELIVERED = 'Доставлен';
+    case CREATED = 'created';
+    case USER_ASSIGNED = 'user_assigned';
+    case TRANSFERRED_TO_DELIVERY_SERVICE = 'transferred_to_delivery_service';
+    case DELIVERED = 'delivered';
 }
