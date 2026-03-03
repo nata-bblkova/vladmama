@@ -12,5 +12,5 @@ Group:
         type: String!
       institution:
         type: Institution!
-#      children:
-#        type: '[Child!]'
+      children:
+        type: '[Child!]'

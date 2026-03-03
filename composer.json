@@ -75,6 +75,7 @@
     },
     "require-dev": {
         "overblog/graphiql-bundle": "^1.0",
+        "phpunit/phpunit": "^12.5",
         "symfony/web-profiler-bundle": "7.4.*"
     }
 }

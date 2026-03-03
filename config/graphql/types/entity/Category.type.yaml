@@ -10,5 +10,5 @@ Category:
         type: String!
       description:
         type: String
-#      image:
-#        type: Media
+      image:
+        type: Media

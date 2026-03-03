@@ -12,7 +12,7 @@ News:
         type: String!
       datePublication:
         type: DateTime!
-##      image:
-##        type: Media
+      image:
+        type: Media
       category:
         type: Category!

@@ -18,8 +18,8 @@ Promotion:
         type: DateTime!
       endDate:
         type: DateTime!
-##      image:
-##        type: Media
+      image:
+        type: Media
       category:
         type: Category!
       institutions:

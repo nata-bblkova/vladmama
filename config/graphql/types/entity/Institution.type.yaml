@@ -16,7 +16,7 @@ Institution:
         type: Float
       longitude:
         type: Float
-##      image:
-##        type: Media
+      image:
+        type: Media
       groups:
         type: '[Group!]'
