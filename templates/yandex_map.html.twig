@@ -1,0 +1,169 @@
+<script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey={{ yandex_geocoder_api_key }}"
+        type="text/javascript">
+</script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script type="text/javascript">
+
+    let defaultLat = {{ yandex_map_default_latitude }};
+    let defaultLng = {{ yandex_map_default_longitude }};
+    let placemark = null;
+    let map = null;
+
+    $(document).ready(function() {
+        const $addressInput = $('#{{ admin.uniqid }}_address');
+        const $suggestions = $('#suggestions');
+
+        $addressInput.on('input', function() {
+            const query = $(this).val();
+
+            if (query.length < 3) {
+                $suggestions.hide();
+                return;
+            }
+
+            $.ajax({
+                url: 'https://suggest-maps.yandex.ru/v1/suggest',
+                dataType: 'json',
+                data: {
+                    text: query,
+                    apikey: '{{ yandex_geosuggest_api_key }}',
+                    lang: 'ru_RU',
+                    print_address: 1,
+                },
+                success: function(data) {
+                    let addresses = $.map(data.results, function(item) {
+                        return item.address.formatted_address;
+                    });
+
+                    showSuggestions(addresses);
+                },
+                error: function(exception) {
+                    console.error('Ошибка получения подсказок: ' + exception);
+                }
+            });
+        });
+
+        function showSuggestions(suggestions) {
+            $suggestions.empty();
+
+            if (!suggestions || suggestions.length === 0) {
+                $suggestions.hide();
+                return;
+            }
+
+            suggestions.forEach(function(suggestion) {
+                const $div = $('<li style="padding: 6px; list-style: none;"></li>').text(suggestion);
+                $div.on('click', function() {
+                    $addressInput.val(suggestion);
+                    $suggestions.hide();
+
+                    let fullUrl = 'https://geocode-maps.yandex.ru/v1?apikey=' + '{{ yandex_geocoder_api_key }}' + '&geocode=' + suggestion;
+                    console.log(fullUrl);
+
+                    $.ajax({
+                        url: 'https://geocode-maps.yandex.ru/v1',
+                        dataType: 'json',
+                        data: {
+                            apikey: '{{ yandex_geocoder_api_key }}',
+                            geocode: suggestion,
+                            format: 'json',
+                        },
+                        success: function(data) {
+                            const point = data.response.GeoObjectCollection.featureMember[0].GeoObject.Point.pos;
+                            let coords = point.split(' ');
+                            coords = [coords[1], coords[0]];
+
+                            updatePlacemark(coords);
+                            map.setCenter(coords, 15);
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error('Ошибка получения координат: статус - ' + textStatus + ', ошибка - ' + errorThrown);
+                        }
+                    });
+                });
+                $suggestions.append($div);
+            });
+
+            $suggestions.css({
+                position: 'absolute',
+                display: 'block',
+                width: '97%',
+                padding: 6,
+                'background-color': '#fff',
+                'z-index': 999
+            });
+        }
+
+        $(document).on('click', function(e) {
+            if (!$(e.target).closest('#suggestions').length) {
+                $suggestions.hide();
+            }
+        });
+
+    });
+
+    function setDefaultCoordinates() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    defaultLat = position.coords.latitude;
+                    defaultLng = position.coords.longitude;
+                },
+                (error) => {
+                    console.error(`ERROR(${error.code}): ${error.message}`);
+                }
+            );
+        } else {
+            alert('Геолокация не поддерживается в вашем браузере');
+        }
+    }
+
+    setDefaultCoordinates();
+    ymaps.ready(init);
+
+    function updatePlacemark(coords) {
+        if (placemark) {
+            placemark.geometry.setCoordinates(coords);
+        } else {
+            placemark = new ymaps.Placemark(coords, {}, {
+                preset: 'islands#violetDotIconWithCaption',
+                draggable: true
+            });
+
+            map.geoObjects.add(placemark);
+            placemark.events.add('dragend', function () {
+                updateAddress(placemark.geometry.getCoordinates());
+            });
+        }
+    }
+
+    function updateAddress(coords) {
+        ymaps.geocode(coords).then(function (res) {
+            $('#{{ admin.uniqid }}_address').val(res.geoObjects.get(0).getAddressLine());
+        });
+        console.log('updateAddress')
+    }
+
+    function init() {
+        {% if latitude %} defaultLat = {{ latitude }} {% endif %};
+        {% if longitude %} defaultLng = {{ longitude }} {% endif %};
+
+        map = new ymaps.Map("map", {
+            center: [defaultLat, defaultLng],
+            zoom: 15
+        });
+
+        map.events.add('click', function (e) {
+            let coords = e.get('coords');
+
+            updateAddress(coords);
+            updatePlacemark(coords);
+        });
+
+        updateAddress([defaultLat, defaultLng]);
+        updatePlacemark([defaultLat, defaultLng]);
+    }
+</script>
+
+
+

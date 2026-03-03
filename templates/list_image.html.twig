@@ -1,0 +1,15 @@
+{% extends '@SonataAdmin/CRUD/base_list_field.html.twig' %}
+
+{% block field %}
+  {% set media = attribute(object, field_description.name) %}
+  {% if media is not null %}
+    <a
+        href="{{ admin.generateUrl('edit', {'id' : object|sonata_urlsafeid }) }}"
+        class="img-preview"
+        data-reference="{{ sonata_path(media, 'reference') }}"
+        style="display: flex; justify-content: center; align-items: center"
+    >
+      {{ sonata_thumbnail(media, 'reference', {'width': 100}) }}
+    </a>
+  {% endif %}
+{% endblock %}

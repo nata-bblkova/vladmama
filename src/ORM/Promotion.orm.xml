@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+  <entity
+          name="App\Entity\Promotion"
+          table="promotions"
+          repository-class="App\Repository\PromotionRepository"
+  >
+
+    <id name="id" type="integer" column="id">
+      <generator strategy="AUTO"/>
+    </id>
+
+    <field name="name" column="name" type="string" nullable="false" />
+    <field name="description" column="description" type="text" nullable="false" />
+    <field name="rules" column="rules" type="text" nullable="false" />
+    <field name="datePublication" column="date_publication" type="datetime" nullable="false" />
+    <field name="startDate" column="start_date" type="datetime" nullable="false" />
+    <field name="endDate" column="end_date" type="datetime" nullable="false" />
+
+    <one-to-one field="image" target-entity="App\Entity\Media\Media" orphan-removal="true" >
+      <cascade>
+        <cascade-persist/>
+        <cascade-remove/>
+      </cascade>
+      <join-column name="image_id" referenced-column-name="id" nullable="true" unique="true" on-delete="SET NULL" />
+    </one-to-one>
+
+    <many-to-one field="category" target-entity="App\Entity\Category" >
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-column name="category_id" referenced-column-name="id" nullable="false" on-delete="RESTRICT" />
+    </many-to-one>
+
+<!-- <cascade-persist/> - при сохранении текущей сущности будет автоматически сохранена и связанная категория, если она новая -->
+<!-- нельзя удалить категорию если на нее ссылаются объекты с on-delete="RESTRICT" -->
+
+<!--    <one-to-many field="institutions" target-entity="App\Entity\Institution" mapped-by="promotion" orphan-removal="false" >-->
+<!--      <cascade>-->
+<!--        <cascade-persist/>-->
+<!--      </cascade>-->
+<!--    </one-to-many>-->
+
+    <many-to-many field="institutions" target-entity="App\Entity\Institution">
+      <cascade>
+        <cascade-persist/>
+      </cascade>
+      <join-table name="promotion__institutions">
+        <join-columns>
+          <join-column name="promotion_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </join-columns>
+        <inverse-join-columns>
+          <join-column name="institution_id" referenced-column-name="id" on-delete="CASCADE"/>
+        </inverse-join-columns>
+      </join-table>
+    </many-to-many>
+
+<!-- <order-by> при получении коллекции она будет автоматически отсортирована -->
+<!-- <cascade-remove/> при удалении текущей сущности, также будут удалены связанные объекты-->
+<!-- orphan-removal="false"	- удаление объекта из коллекции не удалит его из базы — «сироты» не удаляются автоматически -->
+
+    <field name="createdAt" column="created_at" type="datetime" nullable="false" />
+    <field name="updatedAt" column="updated_at" type="datetime" nullable="false" />
+    <lifecycle-callbacks>
+      <lifecycle-callback type="prePersist" method="prePersistTimestampable"/>
+      <lifecycle-callback type="preUpdate" method="preUpdateTimestampable"/>
+    </lifecycle-callbacks>
+
+  </entity>
+</doctrine-mapping>

@@ -1,0 +1,19 @@
+Media:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      name:
+        type: String!
+      url:
+        type: String!
+        resolve: '@=query("App\\GraphQL\\Resolver\\MediaResolver::resolveUrl", value)'
+      width:
+        type: Int
+      contentSize:
+        type: String
+      contentType:
+        type: String

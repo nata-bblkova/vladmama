@@ -1,0 +1,8 @@
+TimestampInterface:
+  type: interface
+  config:
+    fields:
+      createdAt:
+        type: DateTime!
+      updatedAt:
+        type: DateTime!

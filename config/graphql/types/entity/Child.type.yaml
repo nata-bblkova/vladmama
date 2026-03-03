@@ -1,0 +1,16 @@
+Child:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      name:
+        type: String!
+      desire:
+        type: String
+      birthday:
+        type: DateTime
+      group:
+        type: Group

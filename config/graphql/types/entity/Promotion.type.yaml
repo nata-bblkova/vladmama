@@ -1,0 +1,26 @@
+Promotion:
+  type: object
+  inherits: [ Resource, Timestamp ]
+  config:
+    interfaces:
+      - ResourceInterface
+      - TimestampInterface
+    fields:
+      name:
+        type: String!
+      description:
+        type: String!
+      rules:
+        type: String!
+      datePublication:
+        type: DateTime!
+      startDate:
+        type: DateTime!
+      endDate:
+        type: DateTime!
+      image:
+        type: Media
+      category:
+        type: Category!
+      institutions:
+        type: '[Institution!]'

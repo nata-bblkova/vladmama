@@ -1,0 +1,44 @@
+services:
+    _defaults:
+        public: true
+        autowire: true
+        autoconfigure: true
+
+    App\Admin\NewsAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\News, manager_type: orm, label: 'admin.news', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\CategoryAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Category, manager_type: orm, label: 'admin.category', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\InstitutionAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Institution, manager_type: orm, label: 'admin.institution', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\GroupAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Group, manager_type: orm, label: 'admin.group', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\ChildAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Child, manager_type: orm, label: 'admin.child', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\PromotionAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Promotion, manager_type: orm, label: 'admin.promotion', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\GiftAdmin:
+        tags:
+            - { name: sonata.admin, model_class: App\Entity\Gift, manager_type: orm, label: 'admin.gift', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\MediaAdmin:
+        arguments: [ ~ , App\Entity\Media\Media, ~ , '@sonata.media.pool' ]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'admin.media', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+
+    App\Admin\UserAdmin:
+        arguments: [ ~, App\Entity\User, ~ ]
+        decorates: 'sonata.user.admin.user'
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: 'admin.user', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping
+    xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd"
+>
+    <entity
+        name="App\Entity\Media\Gallery"
+        table="media__galleries"
+    >
+
+        <id name="id" type="integer" column="id">
+            <generator strategy="AUTO"/>
+        </id>
+
+        <field name="uniqueKey" column="unique_key" type="string" length="128" unique="true" nullable="false"/>
+
+        <one-to-many field="galleryItems" target-entity="App\Entity\Media\GalleryItem" mapped-by="gallery" orphan-removal="true" fetch="EAGER" >
+            <cascade>
+                <cascade-persist/>
+                <cascade-remove/>
+            </cascade>
+        </one-to-many>
+    </entity>
+</doctrine-mapping>

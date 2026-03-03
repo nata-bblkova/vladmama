@@ -1,0 +1,17 @@
+twig:
+    file_name_pattern: '*.twig'
+    paths:
+        '%kernel.project_dir%/templates': ~
+    globals:
+        yandex_geocoder_api_key: '%env(YANDEX_GEOCODER_API_KEY)%'
+        yandex_geosuggest_api_key: '%env(YANDEX_GEOSUGGEST_API_KEY)%'
+        yandex_map_default_latitude: '%env(YANDEX_MAP_DEFAULT_LATITUDE)%'
+        yandex_map_default_longitude: '%env(YANDEX_MAP_DEFAULT_LONGITUDE)%'
+
+    form_themes:
+        - '@SonataMedia/Form/media_widgets.html.twig'
+        - 'edit_address.html.twig'
+
+when@test:
+    twig:
+        strict_variables: true

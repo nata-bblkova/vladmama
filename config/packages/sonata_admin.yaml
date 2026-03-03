@@ -1,0 +1,35 @@
+sonata_block:
+  blocks:
+    sonata.admin.block.admin_list:
+      contexts: [admin]
+
+sonata_admin:
+  show_mosaic_button: false
+  title: "Владмама"
+  title_logo: /logo.jpg
+  templates:
+    layout: /SonataAdminBundle/layout.html.twig
+
+  dashboard:
+    groups:
+      sonata.admin.group.sponsored:
+        label_catalogue: messages
+        icon:            '<i class="fa fa-home"></i>'
+        items:
+          - App\Admin\InstitutionAdmin
+          - App\Admin\ChildAdmin
+          - App\Admin\GiftAdmin
+
+      sonata.admin.group.publication:
+        label_catalogue: messages
+        icon: '<i class="fa fa-users"></i>'
+        items:
+          - App\Admin\CategoryAdmin
+          - App\Admin\NewsAdmin
+          - App\Admin\PromotionAdmin
+
+      sonata.admin.group.settings:
+        label_catalogue: messages
+        icon: '<i class="fa fa-cogs"></i>'
+        items:
+          - App\Admin\UserAdmin

@@ -1,0 +1,4 @@
+GiftStatusEnum:
+  type: enum
+  config:
+    enumClass: 'App\Enum\GiftStatusEnum'

@@ -1,0 +1,46 @@
+sonata_media:
+    class:
+        media: App\Entity\Media\Media
+        gallery: App\Entity\Media\Gallery
+        gallery_item: App\Entity\Media\GalleryItem
+
+    default_context: default
+    db_driver: doctrine_orm
+    contexts:
+        default:
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+        news:
+            providers:
+                - sonata.media.provider.image
+
+        category:
+            providers:
+                - sonata.media.provider.image
+
+        institution:
+            providers:
+                - sonata.media.provider.image
+
+        promotion:
+            providers:
+                - sonata.media.provider.image
+
+    cdn:
+        server:
+            path: /uploads/media
+
+    filesystem:
+        local:
+            # Directory for uploads should be writable
+            directory: "%kernel.project_dir%/public/uploads/media"
+            create: false

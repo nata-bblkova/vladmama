@@ -1,0 +1,6 @@
+Resource:
+  decorator: true
+  config:
+    fields:
+      id:
+        type: Int!
