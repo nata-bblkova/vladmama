@@ -13,6 +13,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
@@ -37,7 +38,7 @@ final class NewsAdmin extends AbstractAdmin
                 ->add('category', EntityType::class, [
                     'class' => Category::class,
                 ])
-                ->add('datePublication', DateTimeType::class)
+                ->add('datePublication', DateType::class)
             ->end()
             ->with('media', ['class' => 'col-md-6'])
             ->add('image', MediaType::class, [
@@ -49,6 +50,8 @@ final class NewsAdmin extends AbstractAdmin
             ])
             ->end()
         ;
+
+        $form->get('image')->remove('unlink');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagrid): void

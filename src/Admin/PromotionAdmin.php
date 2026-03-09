@@ -5,6 +5,7 @@ namespace App\Admin;
 use App\Entity\Category;
 use App\Entity\Institution;
 use App\Repository\InstitutionRepository;
+use App\Service\YandexGeocoderService;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridInterface;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
@@ -15,18 +16,16 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Sonata\MediaBundle\Form\Type\MediaType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class PromotionAdmin extends AbstractAdmin
 {
-    private InstitutionRepository $institutionRepository;
-
-    public function __construct(InstitutionRepository $institutionRepository, ?string $code = null, ?string $class = null, ?string $baseControllerName = null)
-    {
-        parent::__construct($code, $class, $baseControllerName);
-
-        $this->institutionRepository = $institutionRepository;
+    public function __construct(
+        private readonly InstitutionRepository $institutionRepository,
+    ) {
+        parent::__construct(); // добавлять code, class, controller не надо, тк это deprecated, соната сама их подставляет по тегу sonata.admin
     }
 
     protected function configureDefaultSortValues(array &$sortValues): void
@@ -71,11 +70,13 @@ final class PromotionAdmin extends AbstractAdmin
                 ])
             ->end()
             ->with('information', ['class' => 'col-md-6'])
-                ->add('datePublication', DateTimeType::class)
-                ->add('startDate', DateTimeType::class)
-                ->add('endDate', DateTimeType::class)
+                ->add('datePublication', DateType::class)
+                ->add('startDate', DateType::class)
+                ->add('endDate', DateType::class)
             ->end()
         ;
+
+        $form->get('image')->remove('unlink');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagrid): void

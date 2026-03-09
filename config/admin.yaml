@@ -33,12 +33,12 @@ services:
             - { name: sonata.admin, model_class: App\Entity\Gift, manager_type: orm, label: 'admin.gift', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
 
     App\Admin\MediaAdmin:
-        arguments: [ ~ , App\Entity\Media\Media, ~ , '@sonata.media.pool' ]
+        arguments:
+            $pool: '@sonata.media.pool'
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'admin.media', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+            - { name: sonata.admin, model_class: App\Entity\Media\Media, manager_type: orm, label: 'admin.media', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
 
     App\Admin\UserAdmin:
-        arguments: [ ~, App\Entity\User, ~ ]
         decorates: 'sonata.user.admin.user'
         tags:
-            - { name: sonata.admin, manager_type: orm, label: 'admin.user', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }
+            - { name: sonata.admin, model_class: App\Entity\User, manager_type: orm, label: 'admin.user', label_translator_strategy: 'sonata.admin.label.strategy.underscore' }

@@ -22,13 +22,10 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 final class InstitutionAdmin extends AbstractAdmin
 {
-    private YandexGeocoderService $yandexGeocoderService;
-
-    public function __construct(YandexGeocoderService $yandexGeocoderService, ?string $code = null, ?string $class = null, ?string $baseControllerName = null)
-    {
-        parent::__construct($code, $class, $baseControllerName);
-
-        $this->yandexGeocoderService = $yandexGeocoderService;
+    public function __construct(
+        private readonly YandexGeocoderService $yandexGeocoderService,
+    ) {
+        parent::__construct(); // добавлять code, class, controller не надо, тк это deprecated, соната сама их подставляет по тегу sonata.admin
     }
 
     protected function preUpdate(object $object): void
@@ -72,12 +69,10 @@ final class InstitutionAdmin extends AbstractAdmin
                 ->add('groups', CollectionType::class, [
                     'by_reference' => false,
                     'btn_translation_domain' => 'messages',
-
                 ], [
-                    'btn_delete' => true,
                     'edit'       => 'inline',
                     'inline'     => 'table',
-                    'admin_code' => 'App\Admin\GroupAdmin',
+                    'admin_code' => GroupAdmin::class,
                 ])
             ->end()
         ;

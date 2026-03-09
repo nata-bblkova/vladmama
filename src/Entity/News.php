@@ -14,7 +14,7 @@ class News implements ResourceInterface, TimestampableInterface
     use ResourceTrait;
     use TimestampableTrait;
 
-    private string $name;
+    private string $name = '';
     private string $description;
     private DateTime $datePublication;
     private Category $category;

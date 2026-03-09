@@ -8,5 +8,9 @@ use Sonata\MediaBundle\Entity\BaseMedia;
 
 class Media extends BaseMedia implements ResourceInterface
 {
-    use ResourceTrait;
+    protected ?int $id = null;
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
 }

@@ -19,4 +19,5 @@ return [
     Sonata\UserBundle\SonataUserBundle::class => ['all' => true],
     Overblog\GraphQLBundle\OverblogGraphQLBundle::class => ['all' => true],
     Overblog\GraphiQLBundle\OverblogGraphiQLBundle::class => ['dev' => true],
+    Symfony\Bundle\MonologBundle\MonologBundle::class => ['all' => true],
 ];

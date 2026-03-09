@@ -36,6 +36,8 @@ final class CategoryAdmin extends AbstractAdmin
                 ])
             ->end()
         ;
+
+        $form->get('image')->remove('unlink');
     }
 
     protected function configureDatagridFilters(DatagridMapper $datagrid): void

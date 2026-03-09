@@ -4,7 +4,7 @@ du:
 	docker-compose up --build -d
 
 duf:
-	docker-compose up -d --force-recreate --remove-orphans
+	docker-compose up -d --force-recreate --remove-orphans # не обновляет контейнеры, если обновили докерфайлы
 
 dd:
 	docker-compose down
@@ -17,6 +17,15 @@ ded:
 
 deh:
 	docker-compose exec httpd bash
+
+dlp:
+	docker-compose logs --tail 30 php
+
+dld:
+	docker-compose logs --tail 30 db
+
+dlh:
+	docker-compose logs --tail 30 httpd
 
 
 m:
