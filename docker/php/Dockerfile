@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install --yes --no-install-recommends \
     libpng-dev \
     libjpeg-dev \
     unzip \
+    logrotate \
     nano
 
 # libpng-dev, libjpeg-dev нужны для gd
@@ -46,6 +47,16 @@ RUN useradd -m -s /bin/bash deployer && echo "deployer:deployer" | chpasswd
 RUN echo "deployer  ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/deployer
 RUN sed -i 's/www-data/deployer/' /usr/local/etc/php-fpm.d/www.conf
 
+# Setup cron
+COPY cron /etc/cron.d/cron
+RUN chmod 0644 /etc/cron.d/cron
+RUN crontab /etc/cron.d/cron
+RUN touch /var/log/cron.log
+
+# setup logrotate
+COPY logrotate/ /etc/
+RUN chmod 0644 /etc/logrotate.d/logrotate.conf
+RUN chmod 0644 /etc/logrotate.conf
+
 USER deployer
-#CMD php-fpm
 CMD sudo php-fpm

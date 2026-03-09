@@ -21,11 +21,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 final class GiftAdmin extends AbstractAdmin
 {
-    public function __construct(InstitutionRepository $institutionRepository, ?string $code = null, ?string $class = null, ?string $baseControllerName = null)
-    {
-        parent::__construct($code, $class, $baseControllerName);
-    }
-
     protected function configureDefaultSortValues(array &$sortValues): void
     {
         $sortValues = [
